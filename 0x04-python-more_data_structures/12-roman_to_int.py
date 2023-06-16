@@ -8,12 +8,14 @@ def roman_to_int(roman_string):
     result = 0
     prev_value = 0
 
-    for char in roman_string[::-1]:
+    for char in reversed(roman_string):
         value = roman_dict.get(char, 0)
-        if value < prev_value:
-            result -= value
-        else:
-            result += value
-            prev_value = value
 
-            return (result)
+        if value >= prev_value:
+            result += value
+        else:
+            result -= value
+
+        prev_value = value
+
+    return (result)
