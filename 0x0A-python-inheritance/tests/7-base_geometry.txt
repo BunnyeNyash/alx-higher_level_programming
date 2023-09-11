@@ -1,0 +1,139 @@
+# Importing the function from the module:
+>>> BG = __import__("7-base_geometry").BaseGeometry
+
+# Checking for module docstring:
+>>> m = __import__("7-base_geometry").__doc__
+>>> len(m) > 1
+True
+
+# Checking for class docstring:
+>>> c = BG.__doc__
+>>> len(c) > 1
+True
+
+# Checking for method docstring:
+>>> mod1 = BG.area.__doc__
+>>> len(mod1) > 1
+True
+>>> mod2 = BG.integer_validator.__doc__
+>>> len(mod2) > 1
+True
+
+# Checking for area failure:
+>>> b = BG()
+>>> b.area()
+Traceback (most recent call last):
+  ...
+Exception: area() is not implemented
+
+# Checking too many arguments for area:
+>>> try:
+...     b.area(1)
+... except TypeError as e:
+...     print(e)
+TypeError: area() takes 1 positional argument but 2 were given
+
+# Checking integer validator for passing integer:
+>>> b.integer_validator("integer", 1)
+
+# Checking for integer == 0:
+>>> try:
+...     b.integer_validator("integer", 0)
+... except ValueError as e:
+...     print(e)
+ValueError: integer must be greater than 0
+
+# Checking for integer < 0;
+>>> try:
+...     b.integer_validator("integer", -5)
+... except ValueError as e:
+...     print(e)
+ValueError: integer must be greater than 0
+
+# Checking for non-integer types:
+>>> try:
+...     b.integer_validator("bool", True)
+... except TypeError as e:
+...     print(e)
+TypeError: bool must be an integer
+
+>>> try:
+...     b.integer_validator("float", 1.5)
+... except TypeError as e:
+...     print(e)
+TypeError: float must be an integer
+
+>>> try:
+...     b.integer_validator("complex", complex(1, 1))
+... except TypeError as e:
+...     print(e)
+TypeError: complex must be an integer
+
+>>> try:
+...     b.integer_validator("string", "hello")
+... except TypeError as e:
+...     print(e)
+TypeError: string must be an integer
+
+>>> try:
+...     b.integer_validator("tuple", (1, 2))
+... except TypeError as e:
+...     print(e)
+TypeError: tuple must be an integer
+
+>>> try:
+...     b.integer_validator("list", [1, 2, 3])
+... except TypeError as e:
+...     print(e)
+TypeError: list must be an integer
+
+>>> try:
+...     b.integer_validator("dict", {"key": "value"})
+... except TypeError as e:
+...     print(e)
+TypeError: dict must be an integer
+
+>>> try:
+...     b.integer_validator("set", {"hello", "world"})
+... except TypeError as e:
+...     print(e)
+TypeError: set must be an integer
+
+>>> try:
+...     b.integer_validator("frozenset", frozenset(["hello", "world"]))
+... except TypeError as e:
+...     print(e)
+TypeError: frozenset must be an integer
+
+>>> try:
+...     b.integer_validator("bytes", b"bytes")
+... except TypeError as e:
+...     print(e)
+TypeError: bytes must be an integer
+
+>>> try:
+...     b.integer_validator("bytearrays", bytearray(b"bytes"))
+... except TypeError as e:
+...     print(e)
+TypeError: bytearrays must be an integer
+
+# Checking for no arguments to integer_validator:
+>>> try:
+...     b.integer_validator()
+... except TypeError as e:
+...     print(e)
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+# Checking for only 1 argument to integer_validator:
+>>> try:
+...     b.integer_validator("integer")
+... except TypeError as e:
+...     print(e)
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+# Checking for too many arguments:
+>>> try:
+...     b.integer_validator("integer", 1, 2)
+... except TypeError as e:
+...     print(e)
+TypeError: integer_validator() takes 3 positional arguments but 4 were given
