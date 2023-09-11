@@ -2,6 +2,9 @@ class MyInt(int):
     """
     A class that inherits from int and inverts the == and != operators.
     """
+    def __new__(cls, *args, **kwargs):
+        """create a new instance of the class"""
+        return super(MyInt, cls).__new__(cls, *args, **kwargs)
 
     def __eq__(self, other):
         """
