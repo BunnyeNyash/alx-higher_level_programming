@@ -16,7 +16,7 @@ class MyInt(int):
         Returns:
             bool: True if the objects are not equal, False otherwise.
         """
-        return int(self) != other
+        return int(self) != int(other)
 
     def __ne__(self, other):
         """
@@ -28,4 +28,4 @@ class MyInt(int):
         Returns:
             bool: True if the objects are equal, False otherwise.
         """
-        return int(self) == other
+        return int(self) == int(other)
