@@ -11,7 +11,8 @@ if __name__ == "__main__":
 
     data = urllib.parse.urlencode({'email': email})
     data = data.encode('ascii')  # data should be bytes
-    req = urllib.request.Request(url, data)
-    with urllib.request.urlopen(req) as response:
-        body = response.read()
-        print(body.decode('utf-8'))
+    
+    request = urllib.request.Request(url, data)
+    
+    with urllib.request.urlopen(request) as response:
+        print(response.read().decode("utf-8"))
